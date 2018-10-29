@@ -14,4 +14,7 @@ In the store I present the following functionalities:
 - Creating a search functionality using a setter
 - Passing input down to a child component
 - Firing an EventEmitter once an event occurs in a child component
-- The 
+
+## The country preseter
+
+  The CountriesService creates a get request to restcountries.eu and then presents the flags of the country retuned.

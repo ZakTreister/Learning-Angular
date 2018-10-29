@@ -1,0 +1,8 @@
+<h1>
+  Your Cart
+</h1>
+<div class="row">
+  <div class="col-sm" *ngFor="let product of cart" >
+    <app-product [product]=product (emitter)="removeProduct($event)"></app-product>
+  </div>
+</div>

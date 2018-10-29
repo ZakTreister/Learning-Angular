@@ -1,0 +1,66 @@
+<h2>Product List</h2>
+<br>
+<input type="text" [(ngModel)]="searchWord">
+<br>
+<br>
+<h2>Add New Product</h2>
+<form>
+    <div class="row">
+        <div class="col">
+            Product Name:
+             <input type="text" class="form-control" name="name" [(ngModel)]="name">
+        </div>
+        <div class="col">
+            Price: <input type="number" class="form-control" name="price" [(ngModel)]="price">
+        </div>
+        <div class="col">
+            Number of Units: <input type="number" class="form-control" name="units" [(ngModel)]="units">
+        </div>
+        <div class="col">
+            Image: <input type="text" class="form-control" name="image" [(ngModel)]="image">
+        </div>
+    </div>
+</form><br>
+<button (click)="addproduct()" class="btn btn-primary mb-2">Add</button>
+<br><br>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Units</th>
+        <th>Image</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody *ngFor="let product of filteredProductList;let i = index">
+        <tr (click)="doClick(i)" [ngClass]="{'selected' : product.isSelected}">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td *ngIf="!product.inEditing">{{product.price | discount}}</td>
+            <td *ngIf="product.inEditing"> <input type="number" [(ngModel)]="product.price"> </td>
+            <td>{{product.unitsInStock}}</td>
+            <td>
+                <app-pic [url]="product.image"></app-pic>
+            </td>
+            <td><button *ngIf="!product.inEditing" class="btn btn-warning" (click)="showEditor(product)">Edit</button><button
+                    *ngIf="product.inEditing" class="btn btn-success" (click)="submitChanges(product)">Submit</button></td>
+            <td><button class="btn btn-success" (click)="addToCart(product); $event.stopPropagation()" style="width:40px">+</button></td>
+        </tr>
+        <!---
+        <tr [hidden]="!product.inEditing">
+            <td>Unchageable</td>
+            <td ><input type="text" name="newName" [(ngModel)]="newName"></td>
+            <td ><input type="number" name="newPrice" [(ngModel)]="newPrice"></td>
+            <td ><input type="number" name="newUnits" [(ngModel)]="newUnits"></td>
+            <td ><input type="text" name="newImage" [(ngModel)]="newImage"></td>
+            <td><button class="btn btn-success" (click)="submitChanges(product)">Submit</button></td>
+        </tr>
+    -->
+    </tbody>
+</table>
+<br>
+<br>
+<button (click)="deleteSelected()" class="btn btn-danger">Delete Selected</button>
+<br>
+<br>

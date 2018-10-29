@@ -1,0 +1,11 @@
+<h1>Countries Page</h1>
+<br>
+<input type="text" [(ngModel)]="input">
+<br>
+<br>
+<button class="btn btn-primary" (click)="getCountries()"> Search </button>
+<div *ngIf="countries" class="row">
+  <div *ngFor="let c of countries" >
+    <app-country [country]="c"></app-country>
+  </div>
+</div>
